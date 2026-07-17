@@ -522,6 +522,95 @@ footer a:hover{color:var(--gold-soft)}
   .stats{gap:30px}
   .sec-head{margin-bottom:48px}
 }
+/* ===== MODAL DE CURSO (premium) ===== */
+.course-modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+  padding:28px;background:rgba(4,3,2,.82);backdrop-filter:blur(10px);opacity:0;transition:opacity .3s ease}
+.course-modal.open{display:flex;opacity:1}
+.cm-sheet{position:relative;width:min(680px,100%);max-height:88vh;overflow:hidden;border-radius:26px;
+  background:radial-gradient(120% 90% at 50% 0,#141009,#050505 62%);
+  border:1px solid rgba(216,190,126,.4);
+  box-shadow:0 60px 130px -40px rgba(0,0,0,.95),inset 0 0 0 1px rgba(216,190,126,.05),0 0 60px -20px rgba(196,160,82,.25);
+  transform:translateY(24px) scale(.98);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.course-modal.open .cm-sheet{transform:none}
+.cm-sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(244,220,166,.7) 50%,transparent)}
+.cm-close{position:absolute;top:16px;right:18px;z-index:4;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(216,190,126,.35);background:rgba(10,8,5,.6);color:var(--gold-soft);
+  font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .25s ease}
+.cm-close:hover{background:var(--gold-soft);color:#160f04;border-color:transparent;transform:rotate(90deg)}
+.cm-body{overflow-y:auto;max-height:88vh;padding:46px 44px 40px;-webkit-overflow-scrolling:touch}
+.cm-body::-webkit-scrollbar{width:7px}
+.cm-body::-webkit-scrollbar-thumb{background:rgba(216,190,126,.3);border-radius:6px}
+.cm-eyebrow{font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+.cm-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,2.9rem);line-height:1.05;margin:12px 0 0;color:var(--offwhite)}
+.cm-title span{color:var(--gold-soft)}
+.cm-desc{color:var(--beige);opacity:.82;font-size:1.02rem;line-height:1.6;margin:18px 0 4px;max-width:52ch}
+.cm-divider{height:1px;margin:30px 0 8px;
+  background:linear-gradient(90deg,transparent,rgba(216,190,126,.5) 20%,#f4dca6 50%,rgba(216,190,126,.5) 80%,transparent)}
+.cm-block{margin-top:26px}
+.cm-block h4{font-family:'Jost',sans-serif;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 16px;display:inline-flex;align-items:center;gap:10px}
+.cm-block h4::before{content:"";width:20px;height:1px;background:var(--gold-soft)}
+.cm-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:11px 26px}
+.cm-list.single{grid-template-columns:1fr}
+.cm-list li{position:relative;padding-left:22px;color:var(--offwhite);opacity:.9;font-size:.97rem;line-height:1.45}
+.cm-list li::before{content:"";position:absolute;left:0;top:.52em;width:7px;height:7px;border-radius:50%;
+  background:var(--gold-soft);box-shadow:0 0 8px 1px rgba(216,190,126,.5)}
+.cm-cta{margin-top:34px;display:flex;justify-content:center}
+.cm-cta .btn{width:100%;max-width:420px;text-align:center}
+@media(max-width:720px){
+  .course-modal{padding:0;align-items:flex-end}
+  .cm-sheet{width:100%;max-height:92vh;border-radius:26px 26px 0 0;border-bottom:none}
+  .cm-body{padding:40px 24px 34px;max-height:92vh}
+  .cm-list{grid-template-columns:1fr;gap:10px}
+  .cm-title{font-size:clamp(1.9rem,8vw,2.4rem)}
+}
+/* ===== CURSOS — destaque reforçado ===== */
+.cursos{position:relative}
+.cursos-glow{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(58% 40% at 50% 10%,rgba(196,160,82,.15),transparent 70%)}
+.cursos .wrap{position:relative;z-index:1}
+.cursos-sub{color:var(--beige);opacity:.84;max-width:640px;margin:20px auto 0;font-size:1.06rem;line-height:1.6}
+.cursos-featured{position:relative;margin:0 0 26px;padding:44px 48px;border-radius:22px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(135deg,#2a2013 0%,#171009 60%,#0e0b08 100%);
+  border:1px solid rgba(216,190,126,.5);
+  box-shadow:0 40px 90px -44px rgba(0,0,0,1),0 0 60px -26px rgba(196,160,82,.5),inset 0 0 0 1px rgba(216,190,126,.06);
+  transition:transform .5s cubic-bezier(.2,.6,.2,1),box-shadow .5s}
+.cursos-featured::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-soft),var(--gold-deep))}
+.cursos-featured:hover{transform:translateY(-6px);
+  box-shadow:0 54px 100px -44px rgba(0,0,0,1),0 0 80px -22px rgba(196,160,82,.6)}
+.ribbon{position:absolute;top:22px;right:-46px;transform:rotate(45deg);z-index:3;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-soft));color:#1a1204;
+  font-family:'Jost',sans-serif;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  padding:7px 54px;box-shadow:0 8px 22px -8px rgba(0,0,0,.75)}
+.cf-eyebrow{font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.cursos-featured h3{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1;margin:10px 0 0;color:var(--offwhite)}
+.cursos-featured .cf-main>p{color:var(--beige);opacity:.85;max-width:60ch;margin:16px 0 0;font-size:1.05rem;line-height:1.55}
+.chl{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 26px}
+.chl li{position:relative;padding-left:22px;color:var(--offwhite);opacity:.9;font-size:.95rem;line-height:1.4}
+.chl li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:50%;
+  background:var(--gold-soft);box-shadow:0 0 8px 1px rgba(216,190,126,.5)}
+.cf-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:26px}
+.ctags{display:flex;flex-wrap:wrap;gap:8px}
+.ctags span{font-family:'Jost',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold-soft);border:1px solid rgba(216,190,126,.35);border-radius:999px;padding:5px 12px;background:rgba(196,160,82,.06)}
+.cf-arrow{font-family:'Jost',sans-serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  color:var(--gold-soft);white-space:nowrap;transition:.4s}
+.cursos-featured:hover .cf-arrow{transform:translateX(6px)}
+/* cards com prévia de tópicos */
+.card .chl{grid-template-columns:1fr;margin:16px 0 0;gap:8px}
+.card .chl li{font-size:.92rem}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
+.card-foot .arrow{margin-top:0;opacity:.7}
+.card:hover .card-foot .arrow{opacity:1;transform:translateX(6px)}
+@media(max-width:720px){
+  .cursos-featured{padding:34px 24px}
+  .chl,.cf-hl{grid-template-columns:1fr}
+  .ribbon{font-size:.58rem;padding:6px 48px;right:-48px}
+  .cf-foot{gap:14px}
+}
 </style>
 </head>
 <body>
@@ -588,18 +677,63 @@ footer a:hover{color:var(--gold-soft)}
 <!-- CURSOS -->
 <section class="cursos" id="cursos">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Formação profissional</span>
-      <h2>Cursos que formam<br><span class="gold-text">carreiras, não passatempos.</span></h2>
-      <div class="divider"></div>
+    <div class="cursos-glow"></div>
+    <div class="sec-head cursos-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Formação profissional · Turmas presenciais</span>
+      <h2>Aprenda a técnica que<br><span class="gold-text">transforma unhas em renda.</span></h2>
+      <div class="divider" style="margin:22px auto 0"></div>
+      <p class="cursos-sub">Formações completas, do zero ao alto padrão — com certificado, apostila e apoio no WhatsApp. Toque em um curso para ver todo o conteúdo.</p>
     </div>
+
+    <div class="cursos-featured reveal" data-course="master">
+      <span class="ribbon">★ Mais procurado</span>
+      <div class="cf-main">
+        <span class="cf-eyebrow">Curso Iniciante</span>
+        <h3>Master <span class="gold-text">Pro</span></h3>
+        <p>A formação mais completa para você começar do zero e já sair aplicando — com estrutura, formatos e acabamento de alto padrão.</p>
+        <ul class="chl cf-hl">
+          <li>Estrutura brasileira e aplicação de extensor</li>
+          <li>Acabamento slim de alto padrão</li>
+          <li>4 formatos: Stiletto, Square, Bailarina e Almond</li>
+          <li>6 bônus de decoração + finalização pro</li>
+        </ul>
+        <div class="cf-foot">
+          <div class="ctags"><span>Certificado</span><span>Apostila</span><span>Coffee break</span><span>Apoio no WhatsApp</span></div>
+          <span class="cf-arrow">Ver conteúdo completo →</span>
+        </div>
+      </div>
+    </div>
+
     <div class="cards">
-      <div class="card reveal d1"><div class="idx">01</div><h3>Curso Iniciante em Gel</h3><p>Aprenda do zero a se tornar uma profissional no mundo das unhas em gel.</p><div class="arrow">Quero este curso →</div></div>
-      <div class="card reveal d2"><div class="idx">02</div><h3>Curso de Aperfeiçoamento</h3><p>Ideal para profissionais que desejam aprimorar técnicas e elevar a qualidade dos atendimentos.</p><div class="arrow">Quero este curso →</div></div>
-      <div class="card reveal d3"><div class="idx">03</div><h3>Curso de Molde F1</h3><p>Aplicação com naturalidade, estrutura perfeita e acabamento sofisticado.</p><div class="arrow">Quero este curso →</div></div>
-      <div class="card reveal d1"><div class="idx">04</div><h3>Manicure & Pedicure Profissionalizante</h3><p>Técnicas tradicionais com excelência e acabamento profissional.</p><div class="arrow">Quero este curso →</div></div>
-      <div class="card reveal d2"><div class="idx">05</div><h3>Curso de Estética Podal</h3><p>Reconstrução de unhas naturais, blindagem impecável e remoção de calosidades.</p><div class="arrow">Quero este curso →</div></div>
-      <div class="card reveal d3" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#1d1710,#0d0b09)">
+      <div class="card reveal d1" data-course="manicure">
+        <div class="idx">01</div>
+        <h3>Manicure &amp; Pedicure Completo</h3>
+        <p>Do básico impecável à decoração e ao cuidado profissional dos pés.</p>
+        <ul class="chl"><li>Cutilagem perfeita e esmaltação</li><li>Decoração, películas e nail art</li><li>Spa dos pés e remoção de calosidade</li></ul>
+        <div class="card-foot"><div class="ctags"><span>Certificado</span></div><div class="arrow">Ver conteúdo →</div></div>
+      </div>
+      <div class="card reveal d2" data-course="moldef1">
+        <div class="idx">02</div>
+        <h3>Curso de Molde F1</h3>
+        <p>Alongamentos resistentes, naturais e com acabamento sofisticado.</p>
+        <ul class="chl"><li>Estrutura, curvatura e ponto de tensão</li><li>Efeito fino, resistente e natural</li><li>Nail arts e retenção do alongamento</li></ul>
+        <div class="card-foot"><div class="ctags"><span>Certificado</span></div><div class="arrow">Ver conteúdo →</div></div>
+      </div>
+      <div class="card reveal d3" data-course="podal">
+        <div class="idx">03</div>
+        <h3>Estética Podal</h3>
+        <p>Cuidado completo e profissional dos pés, com naturalidade.</p>
+        <ul class="chl"><li>Reconstrução com molde F1 e poligel</li><li>Remoção segura de calosidades</li><li>Biossegurança e acabamento pro</li></ul>
+        <div class="card-foot"><div class="ctags"><span>Certificado</span></div><div class="arrow">Ver conteúdo →</div></div>
+      </div>
+      <div class="card reveal d1" data-course="aperfeicoamento">
+        <div class="idx">04</div>
+        <h3>Aperfeiçoamento</h3>
+        <p>Treinamento individual e personalizado para evoluir na prática.</p>
+        <ul class="chl"><li>Conteúdo focado nas suas dificuldades</li><li>Correção de erros e refinamento</li><li>Agilidade e resultados duradouros</li></ul>
+        <div class="card-foot"><div class="ctags"><span>Individual</span></div><div class="arrow">Ver conteúdo →</div></div>
+      </div>
+      <div class="card card-help reveal d2" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#1d1710,#0d0b09)">
         <h3 style="font-size:1.5rem">Não sabe por onde<br>começar?</h3>
         <p style="margin-bottom:20px">Te ajudo a escolher a formação certa para o seu momento.</p>
         <a href="https://wa.me/5581994014987?text=Ol%C3%A1%20Duda%2C%20quero%20saber%20sobre%20os%20cursos" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="align-self:flex-start">Falar com a Duda</a>
@@ -758,7 +892,15 @@ footer a:hover{color:var(--gold-soft)}
   </div>
 </div>
 <div class="lightbox" id="lightbox"><span class="lb-close">&times;</span><div class="lb-frame" id="lbFrame"></div></div>
+<!-- MODAL DE CURSO -->
+<div class="course-modal" id="courseModal" aria-hidden="true">
+  <div class="cm-sheet" role="dialog" aria-modal="true">
+    <button class="cm-close" id="cmClose" aria-label="Fechar">&times;</button>
+    <div class="cm-body" id="cmBody"></div>
+  </div>
+</div>
 <script>
+
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
 const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
@@ -807,13 +949,70 @@ makeStars(document.getElementById('menuStars'),_mob?22:42);
     r.appendChild(chip);
     r.addEventListener('click',function(){ go(url); });
   });
-  document.querySelectorAll('.cursos .card').forEach(function(c){
-    var arrow=c.querySelector('.arrow'); var h=c.querySelector('h3');
-    if(!arrow||!h) return;
-    var name=h.textContent.trim();
-    var url=WA+encodeURIComponent('Oi Duda! Tenho interesse no '+name+'. Como funciona e como faco para comecar?');
-    arrow.addEventListener('click',function(e){ e.stopPropagation(); go(url); });
+})();
+
+// --- Modal de cursos (conteudo completo) ---
+(function(){
+  var WA='https://wa.me/5581994014987?text=';
+  var COURSES={
+    master:{eyebrow:'Curso Iniciante',title:'Master <span>Pro</span>',
+      desc:'Formação completa para você começar do zero e sair aplicando com técnica, estrutura e acabamento de alto padrão.',
+      blocks:[
+        {h:'O que você vai aprender',items:['Preparação da lâmina','Preparação química','Estrutura brasileira','Controle de produtos','Visão frontal, lateral e ponta','Aplicação de extensor','Ferramenta de trabalho','Tipos de pincel','Formato e técnicas','Uso correto de produtos','Acabamento slim de alto padrão','Finalização pro']},
+        {h:'Bônus',items:['Naturalidade','Baby Boomer','Baby color','Marmorizado','Efeito Shine','Decoração com top coat']},
+        {h:'Formatos',items:['Stiletto','Square (quadrada)','Bailarina','Almond']},
+        {h:'Incluso',items:['Certificado','Apostila','Coffee break','Brinde surpresa','Apoio via WhatsApp']}
+      ]},
+    manicure:{eyebrow:'Curso Completo',title:'Manicure &amp; <span>Pedicure</span>',
+      desc:'Formação completa em manicure e pedicure — do básico impecável à decoração e ao cuidado profissional dos pés.',
+      blocks:[
+        {h:'Módulos do curso',single:true,items:['Manicure e Pedicure — cutilagem perfeita e esmaltação','Decoração e Películas — arte e design das unhas','Nail Art e Adesivos','Spa dos Pés — remoção de calosidade e hidratação']}
+      ]},
+    moldef1:{eyebrow:'Técnica de alto padrão',title:'Curso de <span>Molde F1</span>',
+      desc:'Domine a técnica de Molde F1 com alongamentos resistentes, naturais e acabamento sofisticado, ganhando agilidade e segurança no atendimento.',
+      blocks:[
+        {h:'Conteúdo do curso',items:['Preparação correta da unha natural','Aplicação da técnica de Molde F1','Estrutura e alinhamento do alongamento','Formato de salão com acabamento sofisticado','Efeito fino, resistente e natural','Curvatura, espessura e ponto de tensão','Lixamento e acabamento profissional','Reduzir o tempo sem perder qualidade','Escolher o molde F1 ideal para cada unha','Diferença entre os modelos de molde F1','Erros mais comuns e como evitá-los','Nail Arts aplicadas ao Molde F1','Maior durabilidade e retenção do alongamento']}
+      ]},
+    podal:{eyebrow:'Cuidado profissional dos pés',title:'Estética <span>Podal</span>',
+      desc:'Cuidado completo e profissional dos pés, com naturalidade, biossegurança e acabamento impecável.',
+      blocks:[
+        {h:'Conteúdo do curso',items:['Esmaltação em gel perfeita para os pés','Reconstrução de unhas com molde F1 e poligel','Remoção segura de calosidades','Anatomia e formato ideal das unhas','Produtos: indicações, contraindicações e uso correto','Biossegurança e protocolos de atendimento','Acabamento profissional para pés saudáveis']}
+      ]},
+    aperfeicoamento:{eyebrow:'Treinamento individual',title:'Curso de <span>Aperfeiçoamento</span>',
+      desc:'Treinamento individual e personalizado para profissionais que querem evoluir na prática e superar dificuldades específicas. Antes da aula, identificamos seus pontos a aperfeiçoar e trabalhamos lado a lado, com feedback contínuo.',
+      blocks:[
+        {h:'O que pode ser trabalhado',items:['Agilidade no atendimento','Aperfeiçoamento da cutilagem','Correção do formato das unhas','Nivelamento e estrutura','Acabamento e refinamento da técnica','Esmaltação perfeita','Aplicação de nail art','Organização da mesa e sequência','Correção de erros técnicos','Resultados sofisticados e mais duradouros']}
+      ]}
+  };
+  var modal=document.getElementById('courseModal'), body=document.getElementById('cmBody'), close=document.getElementById('cmClose');
+  if(!modal||!body) return;
+  function esc(s){return s;}
+  function render(k){
+    var c=COURSES[k]; if(!c) return;
+    var plain=c.title.replace(/<[^>]+>/g,'');
+    var html='<span class="cm-eyebrow">'+c.eyebrow+'</span>';
+    html+='<h2 class="cm-title">'+c.title+'</h2>';
+    html+='<p class="cm-desc">'+c.desc+'</p>';
+    html+='<div class="cm-divider"></div>';
+    c.blocks.forEach(function(b){
+      html+='<div class="cm-block"><h4>'+b.h+'</h4><ul class="cm-list'+(b.single?' single':'')+'">';
+      b.items.forEach(function(it){ html+='<li>'+it+'</li>'; });
+      html+='</ul></div>';
+    });
+    var url=WA+encodeURIComponent('Oi Duda! Tenho interesse no curso '+plain+'. Como funciona e como faço para começar?');
+    html+='<div class="cm-cta"><a href="'+url+'" target="_blank" rel="noopener noreferrer" class="btn btn-gold">Quero este curso no WhatsApp</a></div>';
+    body.innerHTML=html;
+    body.scrollTop=0;
+  }
+  function open(k){ render(k); modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); }
+  function shut(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); }
+  document.querySelectorAll('.cursos [data-course]').forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click',function(){ open(card.getAttribute('data-course')); });
   });
+  close.addEventListener('click',shut);
+  modal.addEventListener('click',function(e){ if(e.target===modal) shut(); });
+  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&modal.classList.contains('open')) shut(); });
 })();
 
 
@@ -822,7 +1021,7 @@ makeStars(document.getElementById('menuStars'),_mob?22:42);
   var trigger=document.getElementById('linksTrigger'), panel=document.getElementById('linksPanel');
   if(trigger&&panel){
     var close=document.getElementById('linksClose');
-    var SHARE=location.origin+location.pathname; // usa o endereço atual; troque por dominio depois
+    var SHARE='https://dudasantos.com.br/'; // dominio oficial — links de divulgacao sempre limpos
     trigger.addEventListener('click',function(e){e.preventDefault();
       document.getElementById('navLinks').classList.remove('open');document.body.classList.remove('menu-open');
       panel.classList.add('open');});
